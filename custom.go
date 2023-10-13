@@ -1,6 +1,7 @@
 package validator_ext
 
 import (
+	"errors"
 	"github.com/go-playground/validator/v10"
 )
 
@@ -44,4 +45,13 @@ func AddCustomRules(validate *validator.Validate) {
 	}
 
 	RegisterTranslations(validate)
+}
+
+func DoValidate(obj any) error {
+	err := CustomValidator.Struct(obj)
+	errMsg := TranslateValidateError(err, "")
+	if errMsg != "" {
+		return errors.New(errMsg)
+	}
+	return nil
 }

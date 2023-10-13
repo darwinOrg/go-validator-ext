@@ -52,14 +52,14 @@ func TranslateError(err error, locale string) map[string]string {
 	}
 
 	if locale == "" {
-		locale = "en"
+		locale = "zh"
 	} else if strings.Contains(locale, "-") {
 		locale = strings.Split(locale, "-")[0]
 	}
 
 	trans, found := uniTranslator.GetTranslator(locale)
 	if !found {
-		locale = "en"
+		locale = "zh"
 		trans, _ = uniTranslator.GetTranslator(locale)
 	}
 
