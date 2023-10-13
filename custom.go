@@ -47,7 +47,7 @@ func AddCustomRules(validate *validator.Validate) {
 	RegisterTranslations(validate)
 }
 
-func DoValidate(obj any) error {
+func ValidateDefault(obj any) error {
 	err := CustomValidator.Struct(obj)
 	errMsg := TranslateValidateError(err, "")
 	if errMsg != "" {
