@@ -1,4 +1,4 @@
-package _examples
+package validator_ext_test
 
 import (
 	"fmt"
