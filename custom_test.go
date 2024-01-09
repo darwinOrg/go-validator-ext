@@ -15,7 +15,7 @@ type User struct {
 	Country   string   `binding:"isCountry"`
 	Birth     string   `binding:"isDate"`
 	CreatedAt string   `binding:"isDatetime"`
-	Status    string   `binding:"mustIn=0#1"`
+	Status    int32    `binding:"mustIn=0#1"`
 }
 
 var user = &User{
@@ -27,7 +27,7 @@ var user = &User{
 	Email:     "123456789@163.com",
 	Birth:     "1990-10-16",
 	CreatedAt: "2023-03-23 18:00:00",
-	Status:    "0",
+	Status:    0,
 }
 
 func TestNotNull(t *testing.T) {
@@ -86,7 +86,7 @@ func TestIsDateTime(t *testing.T) {
 }
 
 func TestMustIn(t *testing.T) {
-	user.Status = "2"
+	user.Status = 2
 	doValidate(user)
 }
 
