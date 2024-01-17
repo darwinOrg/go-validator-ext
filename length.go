@@ -16,13 +16,15 @@ func maxLength(fl validator.FieldLevel) bool {
 	switch field.Kind() {
 	case reflect.String:
 		p := asInt(param)
-		return int64(utf8.RuneCountInString(field.String())) <= p
+		length := int64(utf8.RuneCountInString(field.String()))
+		return length == 0 || length <= p
 	case reflect.Slice, reflect.Map, reflect.Array:
 		p := asInt(param)
-		return int64(field.Len()) <= p
+		length := int64(field.Len())
+		return length == 0 || length <= p
+	default:
+		return true
 	}
-
-	return true
 }
 
 func minLength(fl validator.FieldLevel) bool {
@@ -32,13 +34,15 @@ func minLength(fl validator.FieldLevel) bool {
 	switch field.Kind() {
 	case reflect.String:
 		p := asInt(param)
-		return int64(utf8.RuneCountInString(field.String())) >= p
+		length := int64(utf8.RuneCountInString(field.String()))
+		return length == 0 || length >= p
 	case reflect.Slice, reflect.Map, reflect.Array:
 		p := asInt(param)
-		return int64(field.Len()) >= p
+		length := int64(field.Len())
+		return length == 0 || length >= p
+	default:
+		return true
 	}
-
-	return true
 }
 
 // asInt returns the parameter as a int64
