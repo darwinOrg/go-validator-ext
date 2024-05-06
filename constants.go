@@ -1,10 +1,6 @@
 package validator_ext
 
 const (
-	NOT_NULL    = "notNull"
-	MAX_VALUE   = "maxValue"
-	MIN_VALUE   = "minValue"
-	IS_EMAIL    = "isEmail"
 	IS_DATE     = "isDate"
 	IS_DATETIME = "isDatetime"
 
