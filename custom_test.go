@@ -15,7 +15,7 @@ type User struct {
 	Country   string   `binding:"isCountry"`
 	Birth     string   `binding:"isDate"`
 	CreatedAt string   `binding:"isDatetime"`
-	Status    int32    `binding:"mustIn=0#1"`
+	Status    int32    `binding:"oneof=0 1"`
 }
 
 var user = &User{
@@ -85,7 +85,7 @@ func TestIsDateTime(t *testing.T) {
 	doValidate(user)
 }
 
-func TestMustIn(t *testing.T) {
+func TestOneOf(t *testing.T) {
 	user.Status = 2
 	doValidate(user)
 }
