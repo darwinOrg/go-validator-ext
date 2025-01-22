@@ -61,41 +61,53 @@ func panicIf(err error) {
 }
 
 func registerMaxLengthEn(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(MAX_LENGTH, trans, func(ut ut.Translator) error {
-		return ut.Add(MAX_LENGTH, "[{0}] max length is {1}", true)
+	err := validate.RegisterTranslation(MaxLength, trans, func(ut ut.Translator) error {
+		return ut.Add(MaxLength, "[{0}] max length is {1}", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(MAX_LENGTH, strings.ToLower(fe.Field()), fe.Param())
+		t, _ := ut.T(MaxLength, strings.ToLower(fe.Field()), fe.Param())
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }
 
 func registerMaxLengthZh(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(MAX_LENGTH, trans, func(ut ut.Translator) error {
-		return ut.Add(MAX_LENGTH, "【{0}】最大长度是{1}", true)
+	err := validate.RegisterTranslation(MaxLength, trans, func(ut ut.Translator) error {
+		return ut.Add(MaxLength, "【{0}】最大长度是{1}", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(MAX_LENGTH, strings.ToLower(fe.Field()), fe.Param())
+		t, _ := ut.T(MaxLength, strings.ToLower(fe.Field()), fe.Param())
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }
 
 func registerMinLengthEn(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(MIN_LENGTH, trans, func(ut ut.Translator) error {
-		return ut.Add(MIN_LENGTH, "[{0}] min length is {1}", true)
+	err := validate.RegisterTranslation(MinLength, trans, func(ut ut.Translator) error {
+		return ut.Add(MinLength, "[{0}] min length is {1}", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(MIN_LENGTH, strings.ToLower(fe.Field()), fe.Param())
+		t, _ := ut.T(MinLength, strings.ToLower(fe.Field()), fe.Param())
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }
 
 func registerMinLengthZh(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(MIN_LENGTH, trans, func(ut ut.Translator) error {
-		return ut.Add(MIN_LENGTH, "【{0}】最小长度是{1}", true)
+	err := validate.RegisterTranslation(MinLength, trans, func(ut ut.Translator) error {
+		return ut.Add(MinLength, "【{0}】最小长度是{1}", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(MIN_LENGTH, strings.ToLower(fe.Field()), fe.Param())
+		t, _ := ut.T(MinLength, strings.ToLower(fe.Field()), fe.Param())
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }

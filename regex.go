@@ -17,21 +17,27 @@ func regex(fl validator.FieldLevel) bool {
 }
 
 func registerRegexEn(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(REGEX, trans, func(ut ut.Translator) error {
-		return ut.Add(REGEX, "[{0}] must match {1}", true)
+	err := validate.RegisterTranslation(Regex, trans, func(ut ut.Translator) error {
+		return ut.Add(Regex, "[{0}] must match {1}", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(REGEX, strings.ToLower(fe.Field()), fe.Param())
+		t, _ := ut.T(Regex, strings.ToLower(fe.Field()), fe.Param())
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }
 
 func registerRegexZh(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(REGEX, trans, func(ut ut.Translator) error {
-		return ut.Add(REGEX, "【{0}】必须匹配 {1}", true)
+	err := validate.RegisterTranslation(Regex, trans, func(ut ut.Translator) error {
+		return ut.Add(Regex, "【{0}】必须匹配 {1}", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(REGEX, strings.ToLower(fe.Field()), fe.Param())
+		t, _ := ut.T(Regex, strings.ToLower(fe.Field()), fe.Param())
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }

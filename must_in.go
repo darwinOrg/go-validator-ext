@@ -38,21 +38,27 @@ func mustIn(fl validator.FieldLevel) bool {
 }
 
 func registerMustInEn(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(MUST_IN, trans, func(ut ut.Translator) error {
-		return ut.Add(MUST_IN, "[{0}] must in [{1}]", true)
+	err := validate.RegisterTranslation(MustIn, trans, func(ut ut.Translator) error {
+		return ut.Add(MustIn, "[{0}] must in [{1}]", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(MUST_IN, strings.ToLower(fe.Field()), fe.Param())
+		t, _ := ut.T(MustIn, strings.ToLower(fe.Field()), fe.Param())
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }
 
 func registerMustInZh(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(MUST_IN, trans, func(ut ut.Translator) error {
-		return ut.Add(MUST_IN, "【{0}】必须在【{1}】", true)
+	err := validate.RegisterTranslation(MustIn, trans, func(ut ut.Translator) error {
+		return ut.Add(MustIn, "【{0}】必须在【{1}】", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(MUST_IN, strings.ToLower(fe.Field()), fe.Param())
+		t, _ := ut.T(MustIn, strings.ToLower(fe.Field()), fe.Param())
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }

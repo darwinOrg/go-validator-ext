@@ -1,6 +1,7 @@
 package validator_ext
 
 import (
+	"errors"
 	"github.com/go-playground/locales/en"
 	"github.com/go-playground/locales/zh"
 	ut "github.com/go-playground/universal-translator"
@@ -17,10 +18,16 @@ func RegisterTranslations(validate *validator.Validate) {
 	uniTranslator = ut.New(eg, eg, zh.New())
 
 	transEn, _ := uniTranslator.GetTranslator("en")
-	en_trans.RegisterDefaultTranslations(validate, transEn)
+	err := en_trans.RegisterDefaultTranslations(validate, transEn)
+	if err != nil {
+		panic(err)
+	}
 
 	transZh, _ := uniTranslator.GetTranslator("zh")
-	zh_trans.RegisterDefaultTranslations(validate, transZh)
+	err = zh_trans.RegisterDefaultTranslations(validate, transZh)
+	if err != nil {
+		panic(err)
+	}
 
 	registerIsCountryEn(validate, transEn)
 	registerIsDateEn(validate, transEn)
@@ -46,7 +53,8 @@ func TranslateError(err error, locale string) map[string]string {
 		return nil
 	}
 
-	errs, ok := err.(validator.ValidationErrors)
+	var errs validator.ValidationErrors
+	ok := errors.As(err, &errs)
 	if !ok {
 		return nil
 	}

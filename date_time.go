@@ -44,41 +44,53 @@ func isDateOrDateTime(fl validator.FieldLevel, format string) bool {
 }
 
 func registerIsDateEn(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(IS_DATE, trans, func(ut ut.Translator) error {
-		return ut.Add(IS_DATE, "[{0}] date format must be yyyy-MM-dd", true)
+	err := validate.RegisterTranslation(IsDate, trans, func(ut ut.Translator) error {
+		return ut.Add(IsDate, "[{0}] date format must be yyyy-MM-dd", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(IS_DATE, strings.ToLower(fe.Field()))
+		t, _ := ut.T(IsDate, strings.ToLower(fe.Field()))
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }
 
 func registerIsDateZh(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(IS_DATE, trans, func(ut ut.Translator) error {
-		return ut.Add(IS_DATE, "【{0}】日期格式必须是 yyyy-MM-dd", true)
+	err := validate.RegisterTranslation(IsDate, trans, func(ut ut.Translator) error {
+		return ut.Add(IsDate, "【{0}】日期格式必须是 yyyy-MM-dd", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(IS_DATE, strings.ToLower(fe.Field()))
+		t, _ := ut.T(IsDate, strings.ToLower(fe.Field()))
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }
 
 func registerIsDateTimeEn(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(IS_DATETIME, trans, func(ut ut.Translator) error {
-		return ut.Add(IS_DATETIME, "[{0}] datetime format must be yyyy-MM-dd", true)
+	err := validate.RegisterTranslation(IsDatetime, trans, func(ut ut.Translator) error {
+		return ut.Add(IsDatetime, "[{0}] datetime format must be yyyy-MM-dd", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(IS_DATETIME, strings.ToLower(fe.Field()))
+		t, _ := ut.T(IsDatetime, strings.ToLower(fe.Field()))
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }
 
 func registerIsDateTimeZh(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(IS_DATETIME, trans, func(ut ut.Translator) error {
-		return ut.Add(IS_DATETIME, "【{0}】日期时间格式必须是 yyyy-MM-dd hh:mm:ss", true)
+	err := validate.RegisterTranslation(IsDatetime, trans, func(ut ut.Translator) error {
+		return ut.Add(IsDatetime, "【{0}】日期时间格式必须是 yyyy-MM-dd hh:mm:ss", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(IS_DATETIME, strings.ToLower(fe.Field()))
+		t, _ := ut.T(IsDatetime, strings.ToLower(fe.Field()))
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }

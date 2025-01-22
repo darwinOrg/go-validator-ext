@@ -31,21 +31,27 @@ func extCountryCode(fl validator.FieldLevel) bool {
 }
 
 func registerIsCountryEn(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(IS_COUNTRY, trans, func(ut ut.Translator) error {
-		return ut.Add(IS_COUNTRY, "[{0}] must be valid country code", true)
+	err := validate.RegisterTranslation(IsCountry, trans, func(ut ut.Translator) error {
+		return ut.Add(IsCountry, "[{0}] must be valid country code", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(IS_COUNTRY, strings.ToLower(fe.Field()))
+		t, _ := ut.T(IsCountry, strings.ToLower(fe.Field()))
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }
 
 func registerIsCountryZh(validate *validator.Validate, trans ut.Translator) {
-	validate.RegisterTranslation(IS_COUNTRY, trans, func(ut ut.Translator) error {
-		return ut.Add(IS_COUNTRY, "【{0}】必须是有效的国家编码", true)
+	err := validate.RegisterTranslation(IsCountry, trans, func(ut ut.Translator) error {
+		return ut.Add(IsCountry, "【{0}】必须是有效的国家编码", true)
 	}, func(ut ut.Translator, fe validator.FieldError) string {
-		t, _ := ut.T(IS_COUNTRY, strings.ToLower(fe.Field()))
+		t, _ := ut.T(IsCountry, strings.ToLower(fe.Field()))
 
 		return t
 	})
+	if err != nil {
+		panic(err)
+	}
 }

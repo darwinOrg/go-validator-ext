@@ -6,19 +6,19 @@ import (
 )
 
 var customAliasMap = map[string]string{
-	IS_CURRENCY: "iso4217",
-	IS_COUNTRY:  "iso3166_1_alpha2|iso3166_1_alpha3|iso3166_1_alpha_numeric|" + EXT_COUNTRY_CODE,
+	IsCurrency: "iso4217",
+	IsCountry:  "iso3166_1_alpha2|iso3166_1_alpha3|iso3166_1_alpha_numeric|" + ExtCountryCode,
 }
 
 var customValidatorMap = map[string]validator.Func{
-	MAX_LENGTH:       maxLength,
-	MIN_LENGTH:       minLength,
-	IS_DATE:          isDate,
-	IS_DATETIME:      isDateTime,
-	REGEX:            regex,
-	IS_MOBILE:        isMobile,
-	MUST_IN:          mustIn,
-	EXT_COUNTRY_CODE: extCountryCode,
+	MaxLength:      maxLength,
+	MinLength:      minLength,
+	IsDate:         isDate,
+	IsDatetime:     isDateTime,
+	Regex:          regex,
+	IsMobile:       isMobile,
+	MustIn:         mustIn,
+	ExtCountryCode: extCountryCode,
 }
 
 var CustomValidator *validator.Validate
@@ -41,7 +41,10 @@ func AddCustomRules(validate *validator.Validate) {
 	}
 
 	for k, v := range customValidatorMap {
-		validate.RegisterValidation(k, v)
+		err := validate.RegisterValidation(k, v)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	RegisterTranslations(validate)
