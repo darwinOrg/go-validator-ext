@@ -28,7 +28,7 @@ func NewCustomValidator() *validator.Validate {
 		return CustomValidator
 	}
 
-	CustomValidator = validator.New()
+	CustomValidator = validator.New(validator.WithRequiredStructEnabled())
 	CustomValidator.SetTagName("binding")
 	AddCustomRules(CustomValidator)
 

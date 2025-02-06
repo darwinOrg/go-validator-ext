@@ -16,6 +16,11 @@ type User struct {
 	Birth     string   `binding:"isDate"`
 	CreatedAt string   `binding:"isDatetime"`
 	Status    int32    `binding:"oneof=0 1"`
+	Works     []*Work  `binding:"dive"`
+}
+
+type Work struct {
+	Name string `binding:"maxLength=10,unique=Name"`
 }
 
 var user = &User{
@@ -28,6 +33,12 @@ var user = &User{
 	Birth:     "1990-10-16",
 	CreatedAt: "2023-03-23 18:00:00",
 	Status:    0,
+	Works: []*Work{
+		{Name: "abc1"},
+		{Name: "abc2"},
+		{Name: "swergwsegawegwgwg"},
+		{Name: "jtrhsgberhehe"},
+	},
 }
 
 func TestNotNull(t *testing.T) {
@@ -51,7 +62,7 @@ func TestMinValue(t *testing.T) {
 }
 
 func TestMaxLength(t *testing.T) {
-	user.Hobby = []string{"1", "2", "3", "4", "5"}
+	//user.Hobby = []string{"1", "2", "3", "4", "5"}
 	doValidate(user)
 }
 
