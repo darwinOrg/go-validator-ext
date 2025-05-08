@@ -9,22 +9,14 @@ import (
 	"time"
 )
 
-var (
-	// 指定日期格式
-	dateFormat = "2006-01-02"
-
-	// 指定时间格式
-	dateTimeFormat = "2006-01-02 15:04:05"
-)
-
 // isDate is the validation function for validating if the current field's value is a valid date string.
 func isDate(fl validator.FieldLevel) bool {
-	return isDateOrDateTime(fl, dateFormat)
+	return isDateOrDateTime(fl, time.DateOnly)
 }
 
 // isDateTime is the validation function for validating if the current field's value is a valid datetime string.
 func isDateTime(fl validator.FieldLevel) bool {
-	return isDateOrDateTime(fl, dateTimeFormat)
+	return isDateOrDateTime(fl, time.DateTime)
 }
 
 func isDateOrDateTime(fl validator.FieldLevel, format string) bool {
