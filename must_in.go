@@ -23,7 +23,7 @@ func mustIn(fl validator.FieldLevel) bool {
 		value = field.String()
 	}
 
-	if value == "" {
+	if value == "" || value == "0" {
 		return true
 	}
 
