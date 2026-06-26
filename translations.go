@@ -2,13 +2,15 @@ package validator_ext
 
 import (
 	"errors"
+	"strings"
+
+	dgcoll "github.com/darwinOrg/go-common/collection"
 	"github.com/go-playground/locales/en"
 	"github.com/go-playground/locales/zh"
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 	en_trans "github.com/go-playground/validator/v10/translations/en"
 	zh_trans "github.com/go-playground/validator/v10/translations/zh"
-	"strings"
 )
 
 var uniTranslator *ut.UniversalTranslator
@@ -88,6 +90,7 @@ func TranslateValidateError(err error, lng string) string {
 	for _, msg := range transErrors {
 		errMsgs = append(errMsgs, msg)
 	}
+	errMsgs = dgcoll.DeDupToSet(errMsgs)
 
 	return strings.Join(errMsgs, "\n")
 }
